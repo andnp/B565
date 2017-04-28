@@ -1,0 +1,32 @@
+Methods performed:
+
+MLE
+  - Find the probability of an ad being clicked based purely on the number of clicks in the training data.
+  - Prediction accuracy: 60.8%
+  - Formula: sum(clicked) / (num * (theta + log(num + gamma)))
+    - where sum(clicked) = number of times clicked
+    - num = number of total adds
+    - theta = meta-parameter to tune regularization. Set to 25000
+    - gamma = meta-parameter to prevent regularization from being undefined. Set to 1
+
+PCA
+  - Find the important components between topics and categories
+  - Would like to show that topics and categories have many highly correlated values
+  - Predict that using a subsample of these values as features to a classifier would dramatically improve performance over MLE
+
+
+
+Assumptions made:
+
+Discard massive user dataset
+  - We found through exploration (note user graph) that users do not frequently visit more than once. Because of this, we decided it would be very difficult to find correlations between users. We would be throwing away approximately 88% of the data from this file (which would make the file more useable).
+
+Discard documents_entities
+  - We found that 76% of the 'entities' were unique, so likely would not give particularly useful information. Further, to convert these features into a feature set usable by classification algorithms would make our datafile many terabytes large.
+
+
+Other Findings:
+
+High correlation between topics and categories
+  - When combining the 'one-hot' features of topics and categories, we find that many of these features are highly correlated.
+  - There are approximately 400 unique topics and categories, but PCA says that 95% of the information can be represented with only 250 combinations of these.
